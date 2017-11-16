@@ -13,6 +13,8 @@ using namespace std;
 #define forj(n) for(int j = 0; j < n; j++)
 #define forsj(s, n) for(int j = s; j < n; j++)
 #define DEBUG(x) cout << #x << " = " << x << endl
+#define prtl(x) cout << x << endl;
+#define prt(x) cout << x
 
 typedef pair<int,int> ii;
 typedef vector<int> vi;
@@ -21,32 +23,33 @@ typedef vector<vi> vvi;
 typedef vector<vector<ii> > vvii;
 typedef long long ll;
 
+int cntA[30], cntB[30];
+
 int main(int argc, char const *argv[]){
-    int n;
-    cin >> n;
-    int cntO = 0;
-    int cntE = 0;
-    int lO = -1;
-    int lE = -1;
-    fori(n){
-        int x;
-        cin >> x;
-        if(x % 2 == 0){
-            cntE++;
-            lE = i + 1;
-        } else {
-            cntO++;
-            lO = i + 1;
+    string a, b, c;
+    cin >> a >> b >> c;
+    
+    for(char aa : a){
+        cntA[aa - 'A']++;
+    }
+    for(char bb : b){
+        cntA[bb - 'A']++;
+    }
+    for(char cc : c){
+        cntB[cc - 'A']++;
+    }
+    int f = 1;
+    for(int i = 0; i < 30; i++){
+        if(cntA[i] != cntB[i]){
+            f = 0;
+            break;
         }
     }
-
-    if(cntE == 1){
-        cout << lE << endl;
+    if(f){
+        prtl("YES");
     } else {
-        cout << lO << endl;
+        prtl("NO");
     }
-
-
 
     return 0;
 }

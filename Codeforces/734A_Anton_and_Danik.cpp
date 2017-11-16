@@ -13,6 +13,8 @@ using namespace std;
 #define forj(n) for(int j = 0; j < n; j++)
 #define forsj(s, n) for(int j = s; j < n; j++)
 #define DEBUG(x) cout << #x << " = " << x << endl
+#define prtl(x) cout << x << endl;
+#define prt(x) cout << x
 
 typedef pair<int,int> ii;
 typedef vector<int> vi;
@@ -24,29 +26,23 @@ typedef long long ll;
 int main(int argc, char const *argv[]){
     int n;
     cin >> n;
-    int cntO = 0;
-    int cntE = 0;
-    int lO = -1;
-    int lE = -1;
-    fori(n){
-        int x;
-        cin >> x;
-        if(x % 2 == 0){
-            cntE++;
-            lE = i + 1;
+    string s;
+    cin >> s;
+    int a = 0, b = 0;
+    for(char c : s){
+        if(c == 'D'){
+            b++;
         } else {
-            cntO++;
-            lO = i + 1;
+            a++;
         }
     }
-
-    if(cntE == 1){
-        cout << lE << endl;
+    if(a == b){
+        prtl("Friendship");
+    } else if(a > b){
+        prtl("Anton");
     } else {
-        cout << lO << endl;
+        prtl("Danik");
     }
-
-
 
     return 0;
 }

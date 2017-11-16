@@ -22,31 +22,35 @@ typedef vector<vector<ii> > vvii;
 typedef long long ll;
 
 int main(int argc, char const *argv[]){
-    int n;
-    cin >> n;
-    int cntO = 0;
-    int cntE = 0;
-    int lO = -1;
-    int lE = -1;
+    
+    int n, m;
+    cin >> n >> m;
+    int l = 0;
     fori(n){
-        int x;
-        cin >> x;
-        if(x % 2 == 0){
-            cntE++;
-            lE = i + 1;
-        } else {
-            cntO++;
-            lO = i + 1;
+        if(i % 2 != 0){
+            l = !l;
         }
+        forj(m){
+            if(i % 2 != 0){
+                if(l){
+                    if(j < m - 1){
+                        cout << '.';
+                    } else {
+                        cout << "#";
+                    }
+                } else {
+                    if(j){
+                        cout << '.';
+                    } else {
+                        cout << "#";
+                    }
+                }
+            } else {
+                cout << "#";
+            }
+        }
+        cout << endl;
     }
-
-    if(cntE == 1){
-        cout << lE << endl;
-    } else {
-        cout << lO << endl;
-    }
-
-
 
     return 0;
 }
