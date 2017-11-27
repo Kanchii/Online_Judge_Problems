@@ -14,7 +14,7 @@ int main(int argc, char const *argv[]){
 		int a;
 		cin >> a;
 		if(a > 0){
-			tot+;
+			tot += a;
 		}
 		if(a >= 0){
 			cnt++;
