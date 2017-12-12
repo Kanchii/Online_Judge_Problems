@@ -2,11 +2,10 @@
 
 using namespace std;
 
-#define INF (1LL << 31 - 1)
-#define LINF (1LL << 63 - 1)
+#define INF 0x3f3f3f3f
 #define max(a,b) ((a) > (b) ? (a) : (b))
 #define min(a,b) ((a) < (b) ? (a) : (b))
-#define MAX 1000100
+#define MAX 100000
 #define mp make_pair
 #define pb push_back
 #define fori(n) for(int i = 0; i < n; i++)
@@ -24,12 +23,19 @@ typedef vector<vi> vvi;
 typedef vector<vector<ii> > vvii;
 typedef long long ll;
 
-
 int main(int argc, char const *argv[]){
+    
+    int n, m;
+    cin >> n >> m;
+    
+    ll aux1 = n - (m - 1);
 
-    ll a, b;
-    cin >> a >> b;
-
+    ll maxi = aux1 * (aux1 - 1) / 2;
+    ll acima = n % m;
+    ll abaixo = m - acima;
+    ll res = floor(n / (double)m);
+    ll mini = ((res + 1) * (res) / 2) * acima + ((res) * (res - 1) / 2) * abaixo;
+    cout << mini << " " << maxi << endl;
 
     return 0;
 }
