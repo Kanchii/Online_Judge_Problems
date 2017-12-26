@@ -23,16 +23,36 @@ typedef vector<vi> vvi;
 typedef vector<vector<ii> > vvii;
 typedef long long ll;
 
-int main(int argc, char const *argv[]){
-    
-    vi v;
-    fori(3){
-        int x;
-        cin >> x;
-        v.push_back(x);
+string aux = "abcdefghijklmnopqrstuvwxyz";
+
+int solve(int pos, int cnt, char obj){
+    int o = obj - 'a';
+    int l = 0;
+    int r = 'z' - 'a';
+    int c = 0;
+    while(pos != o){
+        pos += cnt;
+        if(pos > r){
+            pos = 0;
+        } else if(pos < l){
+            pos = r;
+        }
+        c++;
     }
-    sort(v.begin(), v.end());
-    prtl((v[1] - v[0] + v[2] - v[1]));
+    return c;
+}
+
+int main(int argc, char const *argv[]){
+    int pos = 0;
+    string s;
+    cin >> s;
+    int res = 0;
+    for(int i = 0; i < s.size(); i++){
+        char daVez = s[i];
+        res += min(solve(pos, -1, daVez), solve(pos, 1, daVez));
+        pos = daVez - 'a';
+    }
+    cout << res << endl;
 
     return 0;
 }
