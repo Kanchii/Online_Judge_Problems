@@ -22,22 +22,41 @@ typedef vector<vector<ii> > vvii;
 typedef long long ll;
 
 int main(int argc, char const *argv[]){
-    int n;
-    cin >> n;
-    int vet[n + 1];
+
+    int n, m;
+    cin >> n >> m;
+    int res = 0;
+    int vetA[n + 1], vetB[m + 1];
     fori(n){
-        scanf("%d", &vet[i]);
+        cin >> vetA[i];
     }
-    int r = 0;
-    int old = 0;
-    for(int i = n - 1; i >= 0; i--){
-        if(old == 0){
-            r++;
+    fori(m){
+        cin >> vetB[i];
+    }
+    int i = 0, j = 0;
+    int cntA = 0, cntB = 0;
+    while(i < n and j < m){
+        if(cntA < cntB){
+            cntA += vetA[i++];
+        } else {
+            cntB += vetB[j++];
         }
-        old--;
-        old = max(old, vet[i]);
+        if(cntA == cntB){
+            res++;
+            cntA = 0;
+            cntB = 0;
+        }
     }
-    cout << r << endl;
+    while(i < n){
+        cntA += vetA[i++];
+    }
+    while(j < m){
+        cntB += vetB[j++];
+    }
+    if(cntA == cntB){
+        res++;
+    }
+    cout << res << endl;
 
     return 0;
 }

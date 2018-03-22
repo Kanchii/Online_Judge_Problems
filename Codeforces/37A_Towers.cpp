@@ -21,23 +21,25 @@ typedef vector<vi> vvi;
 typedef vector<vector<ii> > vvii;
 typedef long long ll;
 
+map<int, int> mapa;
+
 int main(int argc, char const *argv[]){
+
     int n;
     cin >> n;
-    int vet[n + 1];
     fori(n){
-        scanf("%d", &vet[i]);
+        int x;
+        cin >> x;
+        mapa[x]++;
     }
-    int r = 0;
-    int old = 0;
-    for(int i = n - 1; i >= 0; i--){
-        if(old == 0){
-            r++;
+    int maxi = 0;
+    int cnt = 0;
+    for(auto i = mapa.begin(); i != mapa.end(); i++){
+        if(i -> second > maxi){
+            maxi = i -> second;
         }
-        old--;
-        old = max(old, vet[i]);
+        cnt++;
     }
-    cout << r << endl;
-
+    cout << maxi << " " << cnt << endl;
     return 0;
 }

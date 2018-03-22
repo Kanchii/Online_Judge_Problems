@@ -22,22 +22,15 @@ typedef vector<vector<ii> > vvii;
 typedef long long ll;
 
 int main(int argc, char const *argv[]){
-    int n;
-    cin >> n;
-    int vet[n + 1];
-    fori(n){
-        scanf("%d", &vet[i]);
-    }
-    int r = 0;
-    int old = 0;
-    for(int i = n - 1; i >= 0; i--){
-        if(old == 0){
-            r++;
-        }
-        old--;
-        old = max(old, vet[i]);
-    }
-    cout << r << endl;
+
+    int n, k, l, c, d, p, nl, np;
+    cin >> n >> k >> l >> c >> d >> p >> nl >> np;
+    int totMili = floor((k * l) / (double)nl);
+    int totSlices = c * d;
+    int totSalt = floor(p / (double)np);
+
+    int res = floor(min(totMili, min(totSlices, totSalt)) / (double)n);
+    cout << res << endl;
 
     return 0;
 }

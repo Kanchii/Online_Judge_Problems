@@ -22,22 +22,18 @@ typedef vector<vector<ii> > vvii;
 typedef long long ll;
 
 int main(int argc, char const *argv[]){
-    int n;
-    cin >> n;
-    int vet[n + 1];
-    fori(n){
-        scanf("%d", &vet[i]);
-    }
-    int r = 0;
-    int old = 0;
-    for(int i = n - 1; i >= 0; i--){
-        if(old == 0){
+
+    int l, r, a;
+    cin >> l >> r >> a;
+
+    for(int i = 0; i < a; i++){
+        if(l < r){
+            l++;
+        } else {
             r++;
         }
-        old--;
-        old = max(old, vet[i]);
     }
-    cout << r << endl;
+    cout << min(l, r) * 2 << endl;
 
     return 0;
 }
