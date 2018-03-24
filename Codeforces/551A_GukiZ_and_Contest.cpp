@@ -46,44 +46,37 @@ void sieve(){
 }
 //------------------------------------------------------------------------
 
-vvii vet;
-
 int ord(const ii &a, const ii &b){
-    if(a.first == b.first){
-        return a.second < b.second;
-    }
     return a.first > b.first;
 }
 
-map<ll, int> mapa;
-
 int main(int argc, char const *argv[]){
+    ios_base::sync_with_stdio(false);
+    int n;
+    cin >> n;
+    ii vet[n + 1];
+    for(int i = 0; i < n; i++){
+        int x;
+        cin >> x;
+        vet[i] = ii(x, i);
+    }
 
-    int n, m;
-    cin >> n >> m;
-
-    vet.assign(m + 1, vii());
-    for(int i = 0; i < m; i++){
-        for(int j = 0; j < n; j++){
-            int x;
-            cin >> x;
-            vet[i].push_back(ii(x, j));
+    sort(vet, vet + n, ord);
+    int res[n + 1];
+    int col = 2;
+    res[vet[0].second] = 1;
+    for(int i = 1; i < n; i++){
+        if(vet[i].first == vet[i - 1].first){
+            res[vet[i].second] = res[vet[i - 1].second];
+        } else {
+            res[vet[i].second] = col;
         }
+        col++;
     }
-    for(int i = 0; i < m; i++){
-        sort(vet[i].begin(), vet[i].end(), ord);
-        mapa[vet[i][0].second]++;
-    }
-    int idx = 0;
-    int maxi = -1;
-    for(ii p : mapa){
-        if(p.second > maxi){
-            maxi = p.second;
-            idx = p.first;
-        }
-    }
-
-    cout << idx + 1 << endl;
+    for(int i = 0; i < n; i++){
+        if(i) cout << " ";
+        cout << res[i];
+    } cout << endl;
 
     return 0;
 }

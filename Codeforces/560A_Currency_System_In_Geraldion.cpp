@@ -46,44 +46,20 @@ void sieve(){
 }
 //------------------------------------------------------------------------
 
-vvii vet;
-
-int ord(const ii &a, const ii &b){
-    if(a.first == b.first){
-        return a.second < b.second;
-    }
-    return a.first > b.first;
-}
-
-map<ll, int> mapa;
-
 int main(int argc, char const *argv[]){
 
-    int n, m;
-    cin >> n >> m;
-
-    vet.assign(m + 1, vii());
-    for(int i = 0; i < m; i++){
-        for(int j = 0; j < n; j++){
-            int x;
-            cin >> x;
-            vet[i].push_back(ii(x, j));
-        }
+    int n;
+    cin >> n;
+    int vet[n + 1];
+    for(int i = 0; i < n; i++){
+        cin >> vet[i];
     }
-    for(int i = 0; i < m; i++){
-        sort(vet[i].begin(), vet[i].end(), ord);
-        mapa[vet[i][0].second]++;
+    sort(vet, vet + n);
+    if(vet[0] != 1){
+        cout << 1 << endl;
+    } else {
+        cout << -1 << endl;
     }
-    int idx = 0;
-    int maxi = -1;
-    for(ii p : mapa){
-        if(p.second > maxi){
-            maxi = p.second;
-            idx = p.first;
-        }
-    }
-
-    cout << idx + 1 << endl;
 
     return 0;
 }
