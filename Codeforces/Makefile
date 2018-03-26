@@ -3,4 +3,4 @@ O = -O2
 VERSION = -std=c++11
 
 all:
-	${CC} ${ID}*.cpp ${VERSION} ${O}
+	${CC} ${id}*.cpp ${VERSION} ${O}
