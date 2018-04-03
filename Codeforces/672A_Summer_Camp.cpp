@@ -34,5 +34,4 @@ int main(int argc, char const *argv[]){
     n--;
     cout << res[n] << endl;
     return 0;
-    cout << "teste";
 }
