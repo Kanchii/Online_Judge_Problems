@@ -25,25 +25,14 @@ typedef unsigned long long ull;
 int main(int argc, char const *argv[]){
     ios_base::sync_with_stdio(false);
 
-    int l;
-    cin >> l;
-    int p, q;
-    cin >> p >> q;
+    int r, a, b, c, d;
+    cin >> r >> a >> b >> c >> d;
 
-    double ft = (l / (double)(p + q));
-    double dq = q * ft;
-
-    double tpv = (l - dq) / (double)p;
-    double tqv = dq / (double)q;
-
-    if(tpv > tqv){
-        double diff = (tpv - tqv);
-        double d2 = (l - diff * q)/(double)(p + q);
-        cout << p * d2 << endl;
+    double di = hypot(c - a, d - b);
+    if(fmod(di, 2 * r) == 0){
+        cout << (int)(di / (2 * r)) << endl;
     } else {
-        double diff = (tqv - tpv);
-        double d2 = (l - diff * p) / (double)(p + q);
-        cout << p * d2 << endl;
+        cout << (int)(di / (2 * r)) + 1 << endl;
     }
 
     return 0;
