@@ -25,15 +25,29 @@ typedef unsigned long long ull;
 int main(int argc, char const *argv[]){
     ios_base::sync_with_stdio(false);
 
-    ll n, m;
-    cin >> n >> m;
-
-    int da = m, db = n - m + 1;
-
-    if(db > da){
-        cout << min(m + 1, n) << endl;
+    string s;
+    cin >> s;
+    int f = 0;
+    int r;
+    for(int i = 0; i < s.size() and !f; i++){
+        for(int j = i; j < s.size() and !f; j++){
+            for(int k = j; k < s.size() and !f; k++){
+                string res = "";
+                res += s[i];
+                if(j != i) res += s[j];
+                if(k != j) res += s[k];
+                int num = atoi(res.c_str());
+                if(num % 8 == 0){
+                    f = 1;
+                    r = num;
+                }
+            }
+        }
+    }
+    if(f){
+        cout << "YES" << endl << r << endl;
     } else {
-        cout << max(1, m - 1) << endl;
+        cout << "NO" << endl;
     }
 
     return 0;

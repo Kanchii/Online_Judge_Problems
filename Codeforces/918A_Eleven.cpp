@@ -24,17 +24,27 @@ typedef unsigned long long ull;
 
 int main(int argc, char const *argv[]){
     ios_base::sync_with_stdio(false);
+    int vet[1200];
+    memset(vet, 0, sizeof vet);
+    vet[1] = vet[2] = 1;
+    int a = 1, b = 2, c;
 
-    ll n, m;
-    cin >> n >> m;
-
-    int da = m, db = n - m + 1;
-
-    if(db > da){
-        cout << min(m + 1, n) << endl;
-    } else {
-        cout << max(1, m - 1) << endl;
+    while(a < 1000){
+        c = a + b;
+        vet[c] = 1;
+        a = b;
+        b = c;
     }
+
+    int n;
+    cin >> n;
+    for(int i = 0; i < n; i++){
+        if(vet[i + 1] == 1){
+            cout << "O";
+        } else {
+            cout << "o";
+        }
+    } cout << endl;
 
     return 0;
 }
