@@ -37,7 +37,7 @@ int main(int argc, char const *argv[]){
     for(int i = 1; i <= n; i += 2){
         v.emplace_back(i);
     }
-    if(!(*(v.back()) == 1 or *(v.back()) == 3)){
+    if(!(v.back() == 1 or v.back() == 3)){
         for(int i = 2; i <= n; i += 2){
             v.emplace_back(i);
         }
