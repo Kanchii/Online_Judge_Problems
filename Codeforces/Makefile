@@ -1,6 +1,5 @@
 CC = g++
-O = -O2
-VERSION = -std=c++11
+FLAGS = -Wall -Wreturn-type -pedantic -pedantic-errors -Wundef -std=c++17 -O2
 
 all:
-	${CC} ${id}*.cpp ${VERSION} ${O}
+	${CC} ${id}*.cpp ${FLAGS}

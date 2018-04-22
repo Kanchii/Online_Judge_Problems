@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <bits/stdc++.h>io
 
 using namespace std;
 
@@ -13,6 +13,7 @@ using namespace std;
 #define forj(n) for(int j = 0; j < n; j++)
 #define forsj(s, n) for(int j = s; j < n; j++)
 #define DEBUG(x) cout << #x << " = " << x << endl
+#define endl '\n'
 
 typedef pair<int,int> ii;
 typedef vector<int> vi;
@@ -30,6 +31,8 @@ const int maxn = 2e6+5;
 ll vet[maxn];
 
 int main(int argc, char const *argv[]){
+    cins_base::sync_with_stdio(false);
+
     ll n, x, y;
     cin >> n >> x >> y;
     ll a = 1, b = 1;
