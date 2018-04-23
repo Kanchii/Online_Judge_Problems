@@ -3,16 +3,20 @@
 using namespace std;
 
 #define INF 0x3f3f3f3f
+#define DINF (1.0 / 0.0)
 #define max(a,b) ((a) > (b) ? (a) : (b))
 #define min(a,b) ((a) < (b) ? (a) : (b))
 #define MAX 100000
 #define mp make_pair
 #define pb push_back
+#define PI (2 * acos(0.0))
 #define fori(n) for(int i = 0; i < n; i++)
 #define forsi(s, n) for(int i = s; i < n; i++)
 #define forj(n) for(int j = 0; j < n; j++)
 #define forsj(s, n) for(int j = s; j < n; j++)
 #define DEBUG(x) cout << #x << " = " << x << endl
+#define fst first
+#define snd second
 #define endl '\n'
 
 typedef pair<int,int> ii;
@@ -21,6 +25,7 @@ typedef vector<ii> vii;
 typedef vector<vi> vvi;
 typedef vector<vector<ii> > vvii;
 typedef long long ll;
+typedef unsigned long long llu;
 
 class IO {
 public:
@@ -225,51 +230,28 @@ public:
     }
 };
 
-const int VANYA = 1;
-const int VOVA = 2;
-const int BOTH = 0;
-
-const int maxn = 2e6+5;
-
-ll vet[maxn];
-
 int main(int argc, char const *argv[]){
     ios_base::sync_with_stdio(false);
     IO io = IO();
-    ll n, x, y;
-    io >> n >> x >> y;
-    ll a = 1, b = 1;
-    ll pos = 0;
 
-    while(a < x or b < y){
-        if((ll)(a * y) < (ll)(b * x)){
-            vet[pos++] = VANYA;
-            a++;
-        } else if((ll)(a * y) > (ll)(b * x)){
-            vet[pos++] = VOVA;
-            b++;
-        } else {
-            a++; b++;
-            pos += 2;
-        }
-    }
+    char c;
+    io >> c;
 
+    io << c << endl;
+
+    int n;
+    io >> n;
+    int maxi = -INF;
     for(int i = 0; i < n; i++){
-        int z;
-        io >> z;
-        z--;
-        switch (vet[z % (x + y)]) {
-            case VANYA:
-                io << "Vanya" << endl;
-                break;
-            case VOVA:
-                io << "Vova" << endl;
-                break;
-            default:
-                io << "Both" << endl;
-                break;
+        int x;
+        io >> x;
+        int aux = (int)sqrt(x);
+        if(aux * aux != x){
+            maxi = max(maxi, x);
         }
     }
+
+    io << maxi << endl;
 
     return 0;
 }

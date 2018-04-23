@@ -6,6 +6,7 @@ using namespace std;
 #define max(a,b) ((a) > (b) ? (a) : (b))
 #define min(a,b) ((a) < (b) ? (a) : (b))
 #define MAX 100000
+#define MOD 1000000007
 #define mp make_pair
 #define pb push_back
 #define fori(n) for(int i = 0; i < n; i++)
@@ -44,7 +45,7 @@ public:
     		if(c == '-')
     			sgn *= -1;
     	while(isdigit(c))
-    		a = a * 10 + c - '0', c = getchar();
+    		a = (a * 10) + (c - '0'), c = getchar();
         x = a * sgn;
         return *this;
     }
@@ -105,8 +106,8 @@ public:
             putchar('-');
             x *= -1;
         }
-        char buff[100];
-        int t = floor(log10(x));
+        char *buff = new char[100];
+        int t = ceil(log10(x)) + 1;
         buff[t] = '\0';
         while(x > 0){
             t--;
@@ -128,8 +129,8 @@ public:
             putchar('-');
             x *= -1;
         }
-        char buff[100];
-        int t = floor(log10(x));
+        char *buff = new char[100];
+        int t = ceil(log10(x)) + 1;
         buff[t] = '\0';
         while(x > 0){
             t--;
@@ -151,13 +152,13 @@ public:
             putchar('-');
             x *= -1;
         }
-        char buff[100];
-        int t = floor(log10(x));
+        char *buff = new char[100];
+        int t = ceil(log10(x)) + 1;
         buff[t] = '\0';
         while(x > 0){
-            buff[t - 1] = ('0' + x % 10);
-            x /= 10;
             t--;
+            buff[t] = ((x % 10) + '0');
+            x /= 10;
         }
         while(buff[t] != '\0'){
             putchar(buff[t++]);
@@ -175,8 +176,8 @@ public:
             putchar('1');
             return *this;
         }
-        char buff[100];
-        int t = floor(log10(x));
+        char *buff = new char[100];
+        int t = ceil(log10(x)) + 1;
         buff[t] = '\0';
         while(x > 0){
             buff[t - 1] = ('0' + x % 10);
@@ -225,51 +226,28 @@ public:
     }
 };
 
-const int VANYA = 1;
-const int VOVA = 2;
-const int BOTH = 0;
-
-const int maxn = 2e6+5;
-
-ll vet[maxn];
-
 int main(int argc, char const *argv[]){
-    ios_base::sync_with_stdio(false);
     IO io = IO();
-    ll n, x, y;
-    io >> n >> x >> y;
-    ll a = 1, b = 1;
-    ll pos = 0;
 
-    while(a < x or b < y){
-        if((ll)(a * y) < (ll)(b * x)){
-            vet[pos++] = VANYA;
-            a++;
-        } else if((ll)(a * y) > (ll)(b * x)){
-            vet[pos++] = VOVA;
-            b++;
-        } else {
-            a++; b++;
-            pos += 2;
-        }
-    }
+    int n, x;
+
+    io >> n >> x;
+
+    int t = 1;
+
+    int res = 0;
 
     for(int i = 0; i < n; i++){
-        int z;
-        io >> z;
-        z--;
-        switch (vet[z % (x + y)]) {
-            case VANYA:
-                io << "Vanya" << endl;
-                break;
-            case VOVA:
-                io << "Vova" << endl;
-                break;
-            default:
-                io << "Both" << endl;
-                break;
-        }
-    }
+        int l, r;
+        io >> l >> r;
 
+        int n = floor((l - t) / (x * 1.0));
+
+        t += n * x;
+
+        res += (r - t) + 1;
+        t = r + 1;
+    }
+    io << res << endl;
     return 0;
 }

@@ -225,50 +225,33 @@ public:
     }
 };
 
-const int VANYA = 1;
-const int VOVA = 2;
-const int BOTH = 0;
-
-const int maxn = 2e6+5;
-
-ll vet[maxn];
+IO io = IO();
 
 int main(int argc, char const *argv[]){
-    ios_base::sync_with_stdio(false);
-    IO io = IO();
-    ll n, x, y;
-    io >> n >> x >> y;
-    ll a = 1, b = 1;
-    ll pos = 0;
+    //ios_base::sync_with_stdio(false);
 
-    while(a < x or b < y){
-        if((ll)(a * y) < (ll)(b * x)){
-            vet[pos++] = VANYA;
-            a++;
-        } else if((ll)(a * y) > (ll)(b * x)){
-            vet[pos++] = VOVA;
-            b++;
-        } else {
-            a++; b++;
-            pos += 2;
+    ll a, b;
+    io >> a >> b;
+
+    int f = 0;
+    ll r1, r2, r3;
+    for(ll i = a; i <= b - 2 and !f; i++){
+        for(ll j = i + 1; j <= b - 1 and !f; j++){
+            for(ll k = j + 1; k <= b and !f; k++){
+                if(__gcd(i, j) == 1 and __gcd(j, k) == 1 and __gcd(i, k) != 1){
+                    r1 = i;
+                    r2 = j;
+                    r3 = k;
+                    f = 1;
+                }
+            }
         }
     }
 
-    for(int i = 0; i < n; i++){
-        int z;
-        io >> z;
-        z--;
-        switch (vet[z % (x + y)]) {
-            case VANYA:
-                io << "Vanya" << endl;
-                break;
-            case VOVA:
-                io << "Vova" << endl;
-                break;
-            default:
-                io << "Both" << endl;
-                break;
-        }
+    if(f){
+        io << r1 << " " << r2 << " " << r3 << endl;
+    } else {
+        io << -1 << endl;
     }
 
     return 0;

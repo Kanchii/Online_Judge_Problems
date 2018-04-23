@@ -225,51 +225,29 @@ public:
     }
 };
 
-const int VANYA = 1;
-const int VOVA = 2;
-const int BOTH = 0;
-
-const int maxn = 2e6+5;
-
-ll vet[maxn];
+int vet[100100];
 
 int main(int argc, char const *argv[]){
-    ios_base::sync_with_stdio(false);
     IO io = IO();
-    ll n, x, y;
-    io >> n >> x >> y;
-    ll a = 1, b = 1;
-    ll pos = 0;
 
-    while(a < x or b < y){
-        if((ll)(a * y) < (ll)(b * x)){
-            vet[pos++] = VANYA;
-            a++;
-        } else if((ll)(a * y) > (ll)(b * x)){
-            vet[pos++] = VOVA;
-            b++;
+    int n;
+    io >> n;
+    int cnt = 0;
+    int r = 1;
+    for(int i = 0; i < 2 * n; i++){
+        int x;
+        io >> x;
+        if(vet[x] == 0){
+            cnt++;
+            vet[x] = 1;
+            r = max(r, cnt);
         } else {
-            a++; b++;
-            pos += 2;
+            vet[x] = 0;
+            cnt--;
         }
     }
 
-    for(int i = 0; i < n; i++){
-        int z;
-        io >> z;
-        z--;
-        switch (vet[z % (x + y)]) {
-            case VANYA:
-                io << "Vanya" << endl;
-                break;
-            case VOVA:
-                io << "Vova" << endl;
-                break;
-            default:
-                io << "Both" << endl;
-                break;
-        }
-    }
+    io << r << endl;
 
     return 0;
 }
