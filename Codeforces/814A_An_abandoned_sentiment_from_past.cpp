@@ -241,26 +241,50 @@ public:
 
 IO io = IO();
 
-int adj[5050];
-
 int main(){
-    int n;
-    io >> n;
+    //ios_base::sync_with_stdio(false);
+    int n, k;
+    io >> n >> k;
+    int l = -1, r = -1, p = 0;
+    vi v;
     for(int i = 0; i < n; i++){
         int x;
         io >> x;
-        x--;
-        adj[i] = x;
-    }
-    int f = 0;
-    for(int i = 0; i < n; i++){
-        if(adj[adj[adj[i]]] == i){
-            f = 1;
-            break;
+        if(x == 0 and p == 0){
+            p = 1;
+        } else if(x != 0 and p == 1){
+            r = x;
+            p = 2;
+        } else if(p < 1){
+            l = x;
+        }
+        if(x != 0){
+            v.emplace_back(x);
         }
     }
 
-    io << (f ? "YES" : "NO") << endl;
+    int x;
+    for(int i = 0; i < k; i++){
+        io >> x;
+    }
+
+    int f = 0;
+    for(int i = 1; i < v.size(); i++){
+        if(v[i] < v[i - 1]){
+            f = 1;
+        }
+    }
+
+    if(f){
+        io << "Yes" << endl;
+    } else {
+        if(k == 1){
+            if((l == -1 ? false : x < l) or (r == -1 ? false : x > r) or !f) io << "Yes" << endl;
+            else      io << "No" << endl;
+        } else {
+            io << "Yes" << endl;
+        }
+    }
 
     return 0;
 }

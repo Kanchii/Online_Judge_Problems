@@ -241,26 +241,18 @@ public:
 
 IO io = IO();
 
-int adj[5050];
-
 int main(){
-    int n;
-    io >> n;
-    for(int i = 0; i < n; i++){
-        int x;
-        io >> x;
-        x--;
-        adj[i] = x;
+    //ios_base::sync_with_stdio(false);
+    int n, a, b;
+    io >> n >> a >> b;
+    a--; b--;
+    string s;
+    io >> s;
+    if(s[a] == s[b]){
+        io << "0" << endl;
+    } else {
+        io << "1" << endl;
     }
-    int f = 0;
-    for(int i = 0; i < n; i++){
-        if(adj[adj[adj[i]]] == i){
-            f = 1;
-            break;
-        }
-    }
-
-    io << (f ? "YES" : "NO") << endl;
 
     return 0;
 }

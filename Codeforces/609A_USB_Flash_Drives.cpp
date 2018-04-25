@@ -241,26 +241,24 @@ public:
 
 IO io = IO();
 
-int adj[5050];
-
 int main(){
+
     int n;
     io >> n;
+    int m;
+    io >> m;
+    vi v;
     for(int i = 0; i < n; i++){
         int x;
         io >> x;
-        x--;
-        adj[i] = x;
+        v.emplace_back(x);
     }
-    int f = 0;
-    for(int i = 0; i < n; i++){
-        if(adj[adj[adj[i]]] == i){
-            f = 1;
-            break;
-        }
+    sort(v.rbegin(), v.rend());
+    int r = 0;
+    while(m > 0){
+        m -= v[r++];
     }
-
-    io << (f ? "YES" : "NO") << endl;
+    io << r << endl;
 
     return 0;
 }
