@@ -243,48 +243,18 @@ IO io = IO();
 
 int main(int argc, char const *argv[]) {
 
-    int n, k;
-    io >> n >> k;
-    vi v, vv;
-    int f = 1;
-    for(int i = 0; i < n; i++){
-        int x;
-        io >> x;
-        if(x){
-            v.emplace_back(x);
-            if(v.size() > 1){
-                if(v[v.size() - 1] < v[v.size() - 2]) f = 0;
-            }
-        }
-        vv.emplace_back(x);
+    int n;
+    string s;
+    io >> n;
+    io >> s;
+    int r = 0;
+    int i = 0;
+    while(i < s.size() and s[i] == '1'){
+        r++;
+        i++;
     }
-    int l;
-    for(int i = 0; i < k; i++){
-        io >> l;
-    }
-
-    if(!f){
-        io << "Yes" << endl;
-    } else {
-        if(k == 1){
-            int ff = 1;
-            for(int i = 0; i < n; i++){
-                int u = vv[i];
-                if(!u){
-                    if(i > 0){
-                        if(l < vv[i - 1]) ff = 0;
-                    }
-                    if(i < n - 1){
-                        if(l > vv[i + 1]) ff = 0;
-                    }
-                }
-            }
-            if(!ff) io << "Yes" << endl;
-            else   io << "No" << endl;
-        } else {
-            io << "Yes" << endl;
-        }
-    }
+    if(i < s.size()) r++;
+    io << r << endl;
 
     return 0;
 }

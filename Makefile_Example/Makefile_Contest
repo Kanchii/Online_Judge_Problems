@@ -1,0 +1,11 @@
+CC = g++
+LINKS = -std=c++17 -O2
+
+A: Makefile A.cpp
+   $(CC) A.cpp $(LINKS) < A
+
+B: Makefile B.cpp
+  $(CC) B.cpp $(LINKS) < B
+
+C: Makefile C.cpp
+ $(CC) C.cpp $(LINKS) < C
