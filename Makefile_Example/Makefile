@@ -15,3 +15,5 @@ C : Makefile C.cpp
 
 clean:
 	rm Aa Bb Cc
+
+.PHONY all A B C clean
