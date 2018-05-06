@@ -3,6 +3,9 @@
 using namespace std;
 
 int main(){
+	
+	vector<int> vet;
+
 
 	string s;
 	cin >> s;
@@ -12,9 +15,8 @@ int main(){
 	for(char c : t){
 		if(c == s[pos - 1]) pos++;
 	}
-
+	
 	cout << pos << endl;
 
 	return 0;
-
 }
