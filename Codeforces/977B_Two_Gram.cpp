@@ -22,13 +22,30 @@ typedef vector<vi> vvi;
 typedef vector<vector<ii> > vvii;
 typedef long long ll;
 
+map<string, int> mapa;
+
 int main(int argc, char const *argv[]) {
 	ios_base::sync_with_stdio(false);
 	int n;
 	cin >> n;
-	if(n & 1) cout << "Ehab" << endl;
-	else	  cout << "Mahmoud" << endl;
+	string s;
+	cin >> s;
+	string aux = "";
+	for(int i = 0; i < s.size() - 1; i++){
+		aux += s[i];
+		aux += s[i + 1];
+		mapa[aux]++;
+		aux = "";
+	}
+	pair<string, int> r;
+	int maxi = 0;
+	for(pair<string, int> res : mapa){
+		if(res.second > maxi){
+			r = res;
+			maxi = res.second;
+		}
+	}
+	cout << r.first << endl;
 
     return 0;
-
 }

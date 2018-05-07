@@ -24,11 +24,15 @@ typedef long long ll;
 
 int main(int argc, char const *argv[]) {
 	ios_base::sync_with_stdio(false);
-	int n;
-	cin >> n;
-	if(n & 1) cout << "Ehab" << endl;
-	else	  cout << "Mahmoud" << endl;
 
+	int a, b;
+	cin >> a >> b;
+
+	for(int i = 0; i < b; i++){
+		if(a % 10 == 0) a /= 10;
+		else a--;
+	}
+	cout << a << endl;
     return 0;
 
 }

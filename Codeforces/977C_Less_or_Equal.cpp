@@ -22,13 +22,41 @@ typedef vector<vi> vvi;
 typedef vector<vector<ii> > vvii;
 typedef long long ll;
 
+map<string, int> mapa;
+
+int solve(vi &v, int k){
+
+	int l = 1, r = 1e9;
+	int mid;
+	while(l <= r){
+		int mid = (l + r) / 2;
+		int cnt = 0;
+		for(auto u : v){
+			if(u <= mid) cnt++;
+			else break;
+		}
+		if(cnt == k) return mid;
+		else {
+			if(cnt > k) r = mid - 1;
+			else l = mid + 1;
+		}
+	}
+	return -1;
+}
+
 int main(int argc, char const *argv[]) {
 	ios_base::sync_with_stdio(false);
-	int n;
-	cin >> n;
-	if(n & 1) cout << "Ehab" << endl;
-	else	  cout << "Mahmoud" << endl;
+	
+	int n, k;
+	cin >> n >> k;
+	vi v;
+	for(int i = 0; i < n; i++){
+		int x;
+		cin >> x;
+		v.emplace_back(x);
+	}
+	sort(v.begin(), v.end());
+	cout << solve(v, k) << endl;
 
     return 0;
-
 }
